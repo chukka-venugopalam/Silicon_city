@@ -1,0 +1,49 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter26Simulator from "@/components/act-1/Chapter26Simulator";
+
+# Chapter 1.26: Shift Registers
+
+<ChapterCard>
+### The Briefing: Data in Motion
+A Shift Register is a cascade of Flip-Flops sharing the same clock, wherein the output of one Flip-Flop is connected to the data input of the next. They are primarily used for data storage and data movement.
+Depending on how data is loaded and read, they fall into four categories:
+*   **SISO (Serial-In, Serial-Out):** Used for time delays. Loading $n$ bits takes $n$ clock cycles.
+*   **SIPO (Serial-In, Parallel-Out):** Converts a serial bitstream into a parallel word (e.g., UART Receivers).
+*   **PISO (Parallel-In, Serial-Out):** Converts a parallel word into a serial bitstream (e.g., UART Transmitters).
+*   **PIPO (Parallel-In, Parallel-Out):** Standard CPU register. Loads $n$ bits in 1 clock cycle.
+</ChapterCard>
+
+<GateTrap>
+**Trap: Clock Cycles for PISO**
+A classic GATE trick question asks how many clock cycles it takes to transmit $n$ bits from a PISO register. 
+Loading the data in parallel takes $1$ clock cycle (or $0$ if done asynchronously). 
+Shifting the data out serially takes $n-1$ clock cycles, because the first bit is *already available* on the output pin immediately after the parallel load. 
+Total cycles = $n$ (if synchronous load) or $n-1$ (if asynchronous load). Read the phrasing carefully!
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: Ring vs Johnson Counters**
+Shift registers can be turned into counters by looping the output back to the input.
+*   **Ring Counter:** Connect $Q\_{last}$ directly to $D\_{first}$. It acts like a rotating 1 (e.g., 1000 $\rightarrow$ 0100 $\rightarrow$ 0010). It has $N$ states.
+*   **Johnson Counter (Twisted Ring):** Connect $Q'\_{last}$ (the inverted output) to $D\_{first}$. It fills with 1s then empties (e.g., 000 $\rightarrow$ 100 $\rightarrow$ 110 $\rightarrow$ 111 $\rightarrow$ 011 $\rightarrow$ 001). It has $2N$ states. 
+Memorize these state counts; do not derive them during the exam.
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter26Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+A 4-bit Johnson counter is initialized with 0000. How many clock pulses are required for the counter to return to the 0000 state?
+
+**Question 2 (NAT):**
+If the clock frequency is $10\text{MHz}$, what is the time delay (in microseconds) provided by an 8-bit SISO shift register?
+
+
+<ChapterNavigation currentChapter={26} />

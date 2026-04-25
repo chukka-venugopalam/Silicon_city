@@ -1,0 +1,45 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter27Simulator from "@/components/act-1/Chapter27Simulator";
+
+# Chapter 1.27: Counters
+
+<ChapterCard>
+### The Briefing: Digital State Machines
+Counters are specialized state machines used to count clock pulses, divide frequencies, and act as digital timers. They are classified into two architectural domains:
+1.  **Asynchronous (Ripple) Counters:** The clock is applied only to the first Flip-Flop (LSB). The output of each Flip-Flop acts as the clock for the next. This causes a "ripple" effect as the state change propagates. They are simple to build but suffer from cumulative propagation delay ($t\_{total} = N \times t\_{pd}$).
+2.  **Synchronous Counters:** The clock is applied to ALL Flip-Flops simultaneously. Next states are determined by combinational logic feeding the inputs. They are faster and avoid glitching, but require more complex circuitry.
+</ChapterCard>
+
+<GateTrap>
+**Trap: Mod-N Async Truncation Glitches**
+To create a Mod-6 asynchronous counter from a 3-bit (Mod-8) counter, you must use a NAND gate to clear the flip-flops when the count reaches 6 (binary `110`). 
+However, the counter *must actually enter* state `110` for a microscopic fraction of a second before the NAND gate activates the asynchronous CLEAR pins. This causes a temporary glitch on the output lines. GATE exams will test if you understand that the state `110` is technically reached, even if it is unstable.
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: Up/Down Ripple Clocking**
+When building an Asynchronous counter using Negative-Edge triggered Flip-Flops:
+*   Connecting $Q$ to the next clock makes an **UP** counter.
+*   Connecting $Q'$ to the next clock makes a **DOWN** counter.
+If you use Positive-Edge triggered Flip-Flops, the rules reverse! ($Q$ = Down, $Q'$ = Up). 
+Memorize: "Negative-Q-Up" ($\downarrow Q \uparrow$).
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter27Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+A 4-bit synchronous counter is built using T Flip-Flops. If the clock frequency is $16\text{MHz}$, what is the frequency (in MHz) of the MSB output $Q_3$?
+
+**Question 2 (NAT):**
+An asynchronous ripple counter is built with 5 flip-flops. Each flip-flop has a propagation delay of $20\text{ns}$. What is the maximum clock frequency (in MHz) this counter can reliably handle?
+
+
+<ChapterNavigation currentChapter={27} />

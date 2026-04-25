@@ -1,1 +1,0 @@
-﻿export default function ActPage() { return ( <div className='p-8 text-center'> <h1 className='text-2xl font-bold'>Act 6 Under Construction</h1> <p className='text-slate-500'>The Architect is preparing this sector.</p> </div> ); }

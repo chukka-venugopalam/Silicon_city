@@ -1,0 +1,46 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter11Simulator from "@/components/act-1/Chapter11Simulator";
+
+# Chapter 1.11: Propositional Logic and Connectives
+
+<ChapterCard>
+### The Briefing: The Fabric of Truth
+Propositional Logic deals with declarative statements (propositions) that are strictly either True (1) or False (0). These atomic propositions are woven together using logical connectives to form compound propositions. 
+
+The primary connectives are:
+* **Conjunction ($\land$):** True iff both operands are True.
+* **Disjunction ($\lor$):** False iff both operands are False.
+* **Implication ($\rightarrow$):** $P \rightarrow Q$. False ONLY when $P$ is True and $Q$ is False. (Also written as $P' \lor Q$).
+* **Biconditional ($\leftrightarrow$):** True iff both operands have the same truth value. (Also written as $(P \rightarrow Q) \land (Q \rightarrow P)$).
+</ChapterCard>
+
+<GateTrap>
+**Trap: The Vacuous Truth of Implication**
+In the implication $P \rightarrow Q$, if the premise $P$ is False, the entire implication is automatically considered **True**, regardless of $Q$. This is known as *vacuous truth*. In exam questions, if you can prove the antecedent ($P$) is false, stop calculating $Q$; the implication is True. Do not overthink it.
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: Implication as Disjunction**
+Never try to simplify complex logic statements leaving the $\rightarrow$ arrow intact. Instantly replace every $P \rightarrow Q$ with $P' \lor Q$. 
+Similarly, replace $P \leftrightarrow Q$ with $PQ \lor P'Q'$ (which is the Boolean XNOR operation). 
+By converting to standard Boolean algebra (AND/OR/NOT), you can apply De Morgan's laws and Absorption rules much faster.
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter11Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+Let $P$ and $Q$ be two propositions. If $P \rightarrow Q$ is False, what is the truth value of $(P \lor Q) \rightarrow (P \land Q)$? (Answer 1 for True, 0 for False).
+
+**Question 2 (NAT):**
+How many rows in the truth table of the compound proposition $(P \land Q) \rightarrow R$ will result in a False (0) value?
+
+
+<ChapterNavigation currentChapter={11} />

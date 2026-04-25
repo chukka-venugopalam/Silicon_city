@@ -1,0 +1,44 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter24Simulator from "@/components/act-1/Chapter24Simulator";
+
+# Chapter 1.24: Latches vs Flip-Flops
+
+<ChapterCard>
+### The Briefing: Sequential Memory
+While combinational circuits rely solely on current inputs, **Sequential Circuits** possess memory. Their output depends on both current inputs and the *previous state*. This is achieved through feedback loops (cross-coupling).
+
+*   **Latch:** Level-triggered memory element. It continuously reacts to inputs as long as the enable signal is active. A simple SR Latch is the foundation of all memory.
+*   **Flip-Flop (FF):** Edge-triggered memory element. It only samples the inputs and changes state at the precise moment a clock signal transitions (either rising edge or falling edge). 
+
+A standard D Flip-Flop is constructed by connecting two D-Latches in a Master-Slave configuration, effectively converting level-sensitivity into edge-sensitivity.
+</ChapterCard>
+
+<GateTrap>
+**Trap: SR vs S'R' (NAND vs NOR Latches)**
+An SR Latch built with NOR gates has active-high inputs (S=1, R=1 is the invalid state). 
+An SR Latch built with NAND gates (often called an S'R' latch) has active-low inputs. Setting S=0 and R=0 is the invalid state, while S=1, R=1 is the hold state. Exam questions often swap these without warning just by drawing different gate symbols. Always trace the cross-coupled gates.
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: The D-Latch Hack**
+The D (Data) Latch solves the invalid state problem of the SR Latch by ensuring S and R are never equal. It connects D directly to S, and NOT D to R. Therefore, $Q\_{next} = D$. Whatever data is at the input is simply passed to the output. You do not need to memorize an excitation table for D Flip-Flops: the input required to reach a target state is simply the target state itself.
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter24Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+In a Master-Slave JK Flip-Flop constructed using NAND gates, if J=1, K=1, and the clock pulse arrives, what does the output Q do? (Answer 0 for Reset, 1 for Set, 2 for Toggle, 3 for Invalid).
+
+**Question 2 (NAT):**
+How many cross-coupled NOR gates are strictly required to build a single, basic 1-bit SR Latch (without an enable line)?
+
+
+<ChapterNavigation currentChapter={24} />

@@ -1,0 +1,50 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter7Simulator from "@/components/act-1/Chapter7Simulator";
+
+# Chapter 1.7: Canonical Forms
+
+<ChapterCard>
+### The Briefing: Standardizing Logic
+Every Boolean function can be expressed in two standard forms:
+* **Sum of Products (SOP):** An ORing of ANDed terms. When all variables are present in each term, it is called *Canonical SOP*, and the terms are called **Minterms** ($m_i$). A minterm evaluates to 1 for exactly one combination of inputs.
+* **Product of Sums (POS):** An ANDing of ORed terms. When all variables are present, it is called *Canonical POS*, and the terms are called **Maxterms** ($M_i$). A maxterm evaluates to 0 for exactly one combination of inputs.
+
+The relationship between Minterms and Maxterms is perfectly complementary: $m_i = (M_i)'$. 
+Therefore, if a function is defined by $\Sigma m(0, 1, 2)$, the same function in POS is $\Pi M(3, 4, 5, 6, 7)$ for a 3-variable system.
+</ChapterCard>
+
+<GateTrap>
+**Trap: Variable Complementation in POS**
+Students natively understand SOP: `1` means $A$, `0` means $A'$. 
+However, in POS, the logic is inverted. A `0` means the normal variable $A$, and a `1` means the complemented variable $A'$. 
+Example: Maxterm $M_5$ for $101$ is $(A' + B + C')$, NOT $(A + B' + C)$. This trips up countless students in the exam hall.
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: Instant Base Conversion for Minterms**
+When asked to find the missing minterms from a non-canonical SOP expression like $f = A + BC'$, do not build a full truth table.
+Expand algebraically by multiplying by $(X + X')$ for missing variables:
+$A(B+B')(C+C') + (A+A')BC' = ABC + ABC' + AB'C + AB'C' + ABC' + A'BC'$
+Convert each term directly to binary: $111, 110, 101, 100, 110, 010$.
+Read the decimals: $7, 6, 5, 4, 6, 2$. 
+Result: $\Sigma m(2, 4, 5, 6, 7)$.
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter7Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+A 4-variable Boolean function is given as $f(A,B,C,D) = \Pi M(0, 2, 5, 8, 10, 14, 15)$. How many minterms are present in the Canonical SOP representation of this function?
+
+**Question 2 (NAT):**
+What is the decimal index of the Maxterm corresponding to the Boolean sum term $(A + B' + C + D')$?
+
+
+<ChapterNavigation currentChapter={7} />

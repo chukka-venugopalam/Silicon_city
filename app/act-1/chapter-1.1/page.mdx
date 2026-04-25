@@ -1,0 +1,49 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter1Simulator from "@/components/act-1/Chapter1Simulator";
+
+# Chapter 1.1: Numerical Origins
+
+<ChapterCard>
+### The Briefing: Radix Systems and Base Conversions
+The foundation of digital logic rests entirely on radix (base) systems. A number system with base $r$ uses $r$ distinct symbols. The value of any digit depends on its position, governed by the polynomial expansion:
+$N = d_n r^n + d\_{n-1} r^{n-1} + ... + d_0 r^0 + d\_{-1} r^{-1} + ...$
+
+In computer architecture, we primarily operate in:
+* **Binary (Base-2):** The physical logic state (0V or 5V).
+* **Hexadecimal (Base-16):** The human-readable compression of binary streams.
+
+Conversion between these bases is not just mathematical; it is the fundamental translation between human instruction and silicon execution.
+</ChapterCard>
+
+<GateTrap>
+**Trap: Fractional Base Conversion Loss**
+When converting fractional decimal numbers to binary by repeated multiplication by 2, students often calculate endlessly. In GATE exams, floating-point precision questions usually limit to 3 or 4 bits. **Never assume a fraction will terminate in binary** (e.g., $0.1\_{10}$ is a non-terminating binary fraction). Know when to truncate based on the options provided.
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: The 8-4-2-1 Matrix**
+Do not use repeated division for Base-10 to Base-2 conversions if the number is less than 256. Simply subtract the largest power of 2.
+For Hex to Binary, never convert to Decimal first. Each Hex digit corresponds exactly to a 4-bit binary nibble.
+$A\_{16} \rightarrow 1010\_{2}$, $F\_{16} \rightarrow 1111\_{2}$. 
+Direct substitution saves critical seconds.
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter1Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+Consider the equation $(123)_5 = (x)_8$. Find the value of $x$.
+*(Hint: Convert Base-5 to Decimal, then Decimal to Base-8).*
+
+**Question 2 (NAT):**
+A system uses a base-$r$ number system. If the equation $\sqrt{224\_{r}} = 13\_{r}$ is mathematically valid, what is the value of the radix $r$?
+
+
+<ChapterNavigation currentChapter={1} />

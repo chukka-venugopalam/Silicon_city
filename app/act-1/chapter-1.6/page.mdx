@@ -1,0 +1,47 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter6Simulator from "@/components/act-1/Chapter6Simulator";
+
+# Chapter 1.6: Boolean Laws and Identities
+
+<ChapterCard>
+### The Briefing: Digital Optimization
+The cost of a digital circuit is directly proportional to the number of logic gates. Boolean Algebra provides the mathematical framework to simplify expressions before hardware implementation.
+Key Laws:
+* **Idempotent Law:** $A + A = A$, $A \cdot A = A$
+* **Absorption Law:** $A + AB = A$, $A(A + B) = A$
+* **De Morgan's Laws:** $(A + B)' = A' \cdot B'$ and $(AB)' = A' + B'$
+* **Consensus Theorem:** $AB + A'C + BC = AB + A'C$. The term $BC$ is the "consensus" term and is entirely redundant.
+</ChapterCard>
+
+<GateTrap>
+**Trap: False Distribution**
+A fatal error in Boolean simplification is assuming $(A+B)(C+D) = AC + BD$. You must foil it out completely: $AC + AD + BC + BD$.
+Similarly, do not forget the dual of distribution: $A + BC = (A+B)(A+C)$. This identity is frequently used to simplify complex POS expressions but is highly unintuitive to students used to standard algebra.
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: Fast Consensus Identification**
+To immediately spot the Consensus Theorem in an exam question, look for THREE terms containing THREE variables (e.g., $A, B, C$). 
+1. Find the variable that is normal in one term and complemented in another (e.g., $A$ in $AB$, $A'$ in $A'C$).
+2. The third term MUST be the product of the remaining variables from the first two terms ($B$ and $C$).
+If it matches, instantly cross out the third term.
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter6Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+Simplify the Boolean expression $Y = A'B'C + A'BC + AB'C + ABC$ and express the minimal number of logic gates (AND/OR/NOT) required to implement the final simplified equation.
+
+**Question 2 (NAT):**
+Evaluate the Boolean expression $F = (X + Y)(X + Y') + (X' + Z)(X' + Z')$. What is the simplified value of $F$? (Answer 0 or 1).
+
+
+<ChapterNavigation currentChapter={6} />

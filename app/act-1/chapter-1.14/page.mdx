@@ -1,0 +1,47 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter14Simulator from "@/components/act-1/Chapter14Simulator";
+
+# Chapter 1.14: Normal Forms
+
+<ChapterCard>
+### The Briefing: Propositional Architecture
+Any logical proposition, no matter how heavily nested with implications and biconditionals, can be mechanically reduced to one of two Normal Forms:
+* **Disjunctive Normal Form (DNF):** An ORing of ANDed clauses. This directly corresponds to the Sum of Products (SOP) in Boolean Algebra. The expression evaluates to True if *any* of its ANDed clauses evaluate to True.
+* **Conjunctive Normal Form (CNF):** An ANDing of ORed clauses. This directly corresponds to the Product of Sums (POS). The expression evaluates to True ONLY if *every single* ORed clause evaluates to True.
+
+Algorithm for conversion:
+1. Eliminate $\leftrightarrow$ using $(P \rightarrow Q) \land (Q \rightarrow P)$.
+2. Eliminate $\rightarrow$ using $\neg P \lor Q$.
+3. Push negations ($\neg$) inward using De Morgan's Laws.
+4. Distribute $\lor$ over $\land$ (for CNF) or $\land$ over $\lor$ (for DNF).
+</ChapterCard>
+
+<GateTrap>
+**Trap: Confusing CNF Satisfiability**
+Determining if a DNF formula is satisfiable is $O(n)$—just look for any single clause that doesn't contain a contradiction (e.g., $A \land \neg A$).
+However, determining if a CNF formula is satisfiable is NP-Complete (the famous SAT problem). GATE questions often try to trick you by asking for the satisfiability of a massive CNF equation. Look closely: if every clause contains a tautology (like $A \lor \neg A \lor B$), it is trivially satisfiable.
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: The Truth Table DNF Hack**
+If algebraic conversion to DNF seems too complicated due to nested terms, do not do it algebraically. Quickly sketch the truth table for the variables. Find every row where the output is True (1). Construct an AND clause for each of those rows and OR them together. This guarantees a perfectly valid Principal DNF.
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter14Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+Convert $P \rightarrow (Q \land R)$ to Conjunctive Normal Form (CNF). How many OR-clauses (maxterms) are present in the final CNF expression?
+
+**Question 2 (NAT):**
+True or False: The formula $(P \land \neg P) \lor (Q \land R)$ is already in Disjunctive Normal Form (DNF). (Answer 1 for True, 0 for False).
+
+
+<ChapterNavigation currentChapter={14} />

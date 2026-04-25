@@ -1,0 +1,44 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter22Simulator from "@/components/act-1/Chapter22Simulator";
+
+# Chapter 1.22: Multiplexers (MUX)
+
+<ChapterCard>
+### The Briefing: The Universal Data Router
+A Multiplexer (MUX) is a combinational circuit that selects one of many analog or digital input signals and forwards the selected input into a single line. It acts as an electronic switch.
+*   A MUX has $2^n$ data inputs, $n$ select lines, and $1$ output.
+*   The logic equation for a 4x1 MUX is $Y = S_1'S_0'I_0 + S_1'S_0I_1 + S_1S_0'I_2 + S_1S_0I_3$.
+*   Because this equation perfectly mirrors a Sum of Products (SOP) canonical form, a Multiplexer is considered a **Universal Logic Gate**. Any Boolean function of $n$ variables can be implemented using a $2^{n-1} \times 1$ MUX.
+</ChapterCard>
+
+<GateTrap>
+**Trap: MSB vs LSB on Select Lines**
+When wiring a function $f(A,B,C)$ to an 8x1 MUX, GATE questions often scramble the select lines (e.g., connecting $C$ to $S_2$ and $A$ to $S_0$). If you assume $A$ is always the Most Significant Bit (MSB) connected to $S_2$, your routing logic will be completely reversed. Always physically trace which variable is connected to which select pin before mapping truth table rows to MUX data inputs.
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: The MUX Folding Technique**
+To implement a 3-variable function $f(A,B,C)$ using a smaller 4x1 MUX, you must "fold" the truth table.
+1. Connect $A$ and $B$ to the select lines $S_1$ and $S_0$.
+2. This leaves $C$ as the data input.
+3. For each combination of $A$ and $B$, look at the two truth table rows for $C=0$ and $C=1$. The required data input for that select state will always be either $0$, $1$, $C$, or $C'$. This saves you from drawing massive K-Maps.
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter22Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+How many 4x1 MUXes are required to construct a 16x1 MUX?
+
+**Question 2 (NAT):**
+A Boolean function $f(A,B,C) = \Sigma m(0, 1, 4, 6)$ is implemented using an 8x1 MUX with $A, B, C$ connected to select lines $S_2, S_1, S_0$ respectively. What is the sum of the indices of the data input lines ($I_0$ to $I_7$) that must be tied to Logic 1?
+
+
+<ChapterNavigation currentChapter={22} />

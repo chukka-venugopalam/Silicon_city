@@ -1,0 +1,28 @@
+import OsSimulator from "@/components/OsSimulator";
+import { ChapterCard } from "@/components/ui/ChapterCard";
+
+<div className="max-w-4xl mx-auto space-y-8 pb-24">
+
+<div className="space-y-2">
+  <div className="text-sky-500 font-bold text-sm tracking-widest uppercase">Act V — The Tower</div>
+  <h1 className="text-4xl font-black text-slate-900 tracking-tight">CPU Scheduling</h1>
+</div>
+
+<ChapterCard title="The FCFS Algorithm" badge="Theory" badgeColor="bg-sky-50 text-sky-600">
+
+First-Come, First-Served (FCFS) is the simplest scheduling algorithm. Processes are assigned to the CPU in the order they arrive. It is non-preemptive, meaning once a process has the CPU, it runs to completion.
+
+**Key Formula:**
+Turnaround Time = Completion Time - Arrival Time
+
+</ChapterCard>
+
+<ChapterCard title="The Visual Gantt Chart" badge="Simulator" badgeColor="bg-blue-50 text-blue-600">
+
+Below is a live Gantt chart demonstrating the FCFS algorithm in action. Notice how process P3 creates a bottleneck because of its large burst time. This is known as the **Convoy Effect**.
+
+<OsSimulator />
+
+</ChapterCard>
+
+</div>

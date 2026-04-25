@@ -1,0 +1,46 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter8Simulator from "@/components/act-1/Chapter8Simulator";
+
+# Chapter 1.8: Universal Gates
+
+<ChapterCard>
+### The Briefing: Silicon Monoculture
+In physical chip manufacturing, it is highly inefficient to fabricate separate silicon structures for AND, OR, and NOT gates. Instead, engineers use **Universal Gates**—NAND and NOR. Any Boolean function, no matter how complex, can be implemented using entirely NAND gates or entirely NOR gates.
+* **NAND (NOT-AND):** $(AB)'$. It is mathematically complete.
+* **NOR (NOT-OR):** $(A+B)'$. It is also mathematically complete.
+
+The cost of a logic circuit is often evaluated by the minimum number of 2-input NAND gates required to build it.
+</ChapterCard>
+
+<GateTrap>
+**Trap: The XOR/XNOR NAND Count**
+GATE frequently asks for the minimum number of NAND or NOR gates required for XOR and XNOR functions. Do not try to derive it in the exam; you will likely build a sub-optimal 5-gate circuit. The strict minimums are:
+* **XOR:** Requires **4** NAND gates or **5** NOR gates.
+* **XNOR:** Requires **5** NAND gates or **4** NOR gates.
+Memorize this asymmetry.
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: Fast SOP to NAND-NAND Conversion**
+If you have a minimized Sum of Products (SOP) expression like $Y = AB + CD$, you do not need to apply De Morgan's manually. 
+A two-level AND-OR circuit (SOP) is structurally identical to a two-level NAND-NAND circuit. You simply replace every AND gate and the final OR gate with NAND gates, and the logic remains mathematically equivalent.
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter8Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+What is the minimum number of 2-input NAND gates required to implement the Boolean function $F = A + B'C$?
+
+**Question 2 (NAT):**
+A half-adder requires 1 XOR gate for the Sum and 1 AND gate for the Carry. What is the minimum number of 2-input NAND gates required to build a complete half-adder circuit?
+
+
+<ChapterNavigation currentChapter={8} />

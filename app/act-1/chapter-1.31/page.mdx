@@ -1,0 +1,51 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter31Simulator from "@/components/act-1/Chapter31Simulator";
+
+# Chapter 1.31: Groups and Cayley Tables
+
+<ChapterCard>
+### The Briefing: Algebraic Structures
+A **Group** is an algebraic structure consisting of a set $G$ and a binary operation $*$ that satisfies four strict axioms:
+1.  **Closure:** For all $a, b \in G$, $a * b \in G$.
+2.  **Associativity:** For all $a, b, c \in G$, $(a * b) * c = a * (b * c)$.
+3.  **Identity Element:** There exists an element $e \in G$ such that $a * e = e * a = a$.
+4.  **Inverse Element:** For every $a \in G$, there exists an inverse $a^{-1}$ such that $a * a^{-1} = a^{-1} * a = e$.
+
+If the operation is also **Commutative** ($a * b = b * a$), it is called an **Abelian Group**.
+
+A **Cayley Table** is simply a grid detailing the result of the operation for every possible pair of elements in a finite group. It is the algebraic equivalent of a digital truth table.
+</ChapterCard>
+
+<GateTrap>
+**Trap: Multiplication Modulo Prime vs Non-Prime**
+The set $\{1, 2, ..., N-1\}$ under multiplication modulo $N$ forms a valid group **IF AND ONLY IF** $N$ is a prime number. 
+If $N$ is composite (e.g., $N=4$), elements that share factors with $N$ (like $2$) will not have multiplicative inverses. ($2 \times 1 = 2$, $2 \times 2 = 0$, $2 \times 3 = 2$. It never reaches the identity $1$). Therefore, $\mathbb{Z}_4^*$ under multiplication is NOT a group.
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: Reading the Cayley Table**
+You can instantly verify group properties just by looking at a filled Cayley Table:
+*   **Closure:** No new symbols appear inside the grid.
+*   **Identity:** Find the column that exactly matches the leftmost header column. The top of that column is the identity $e$.
+*   **Inverses:** Ensure the identity $e$ appears exactly once in every single row and every single column.
+*   **Abelian:** The matrix is perfectly symmetric across its main diagonal.
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter31Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+Consider the group of integers $\{0, 1, 2, 3, 4, 5, 6\}$ under addition modulo 7. What is the inverse of the element $5$?
+
+**Question 2 (NAT):**
+Let $G$ be an Abelian group with 5 elements. What is the maximum number of identity elements this group can possess?
+
+
+<ChapterNavigation currentChapter={31} />

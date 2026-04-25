@@ -1,0 +1,48 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter18Simulator from "@/components/act-1/Chapter18Simulator";
+
+# Chapter 1.18: Natural Language to Formal Logic
+
+<ChapterCard>
+### The Briefing: The Compiler of the Mind
+Translating English sentences into First-Order Logic requires identifying the correct quantifiers and the correct logical connectives that pair with them.
+The Golden Rules of Translation:
+1.  **Universal Quantifier ($\forall$) almost ALWAYS pairs with Implication ($\rightarrow$).** "All dogs are mammals" $\equiv \forall x (Dog(x) \rightarrow Mammal(x))$.
+2.  **Existential Quantifier ($\exists$) almost ALWAYS pairs with Conjunction ($\land$).** "Some dogs are brown" $\equiv \exists x (Dog(x) \land Brown(x))$.
+</ChapterCard>
+
+<GateTrap>
+**Trap: The Fatal Mismatch**
+The most common mistake in GATE is mixing the golden pairings:
+*   $\forall x (Dog(x) \land Mammal(x))$ means "Everything in the entire universe is a dog AND a mammal." (Obviously false).
+*   $\exists x (Dog(x) \rightarrow Brown(x))$ is a vacuous trap. Because $P \rightarrow Q$ is true when $P$ is false, this statement is true as long as there is *at least one thing in the universe that is NOT a dog*. It does not guarantee a brown dog exists at all!
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: The "Not All" and "None" Templates**
+Memorize these exact templates to bypass slow mental translation:
+*   "Not all A are B" $\equiv \neg \forall x(A(x) \rightarrow B(x)) \equiv \exists x(A(x) \land \neg B(x))$ ("There is some A that is not B").
+*   "No A are B" $\equiv \forall x(A(x) \rightarrow \neg B(x)) \equiv \neg \exists x(A(x) \land B(x))$ ("There does not exist an A that is also B").
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter18Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+Consider the statement: "Every boy loves some girl." Let $B(x)$ be "$x$ is a boy", $G(y)$ be "$y$ is a girl", and $L(x,y)$ be "$x$ loves $y$". Which of the following is correct?
+(A) $\forall x \exists y (B(x) \land G(y) \land L(x,y))$
+(B) $\forall x (B(x) \rightarrow \exists y (G(y) \land L(x,y)))$
+*(Answer 1 for A, 2 for B).*
+
+**Question 2 (NAT):**
+Translate: "There is no student who knows every professor." Let $S(x)$ be student, $P(y)$ be professor, $K(x,y)$ be knows. Is $\neg \exists x (S(x) \land \forall y (P(y) \rightarrow K(x,y)))$ logically equivalent to the English sentence? (Answer 1 for Yes, 0 for No).
+
+
+<ChapterNavigation currentChapter={18} />

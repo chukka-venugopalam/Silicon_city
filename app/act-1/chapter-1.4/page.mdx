@@ -1,0 +1,50 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter4Simulator from "@/components/act-1/Chapter4Simulator";
+
+# Chapter 1.4: Overflow Logic
+
+<ChapterCard>
+### The Briefing: The Boundaries of Hardware
+In an $n$-bit 2's complement system, the valid range of representable numbers is strictly $[-2^{n-1}, +2^{n-1} - 1]$. 
+When two numbers of the *same sign* are added, the result may fall outside this range. This condition is called **Overflow**. 
+Hardware detects overflow using a simple Boolean function on the carry bits of the Most Significant Bit (MSB):
+$V = C\_{in} \oplus C\_{out}$
+
+Where:
+* $C\_{in}$ is the carry entering the sign bit (MSB).
+* $C\_{out}$ is the carry leaving the sign bit.
+
+If $V = 1$, overflow has occurred, and the sign bit of the result is mathematically invalid.
+</ChapterCard>
+
+<GateTrap>
+**Trap: Overflow with Opposite Signs**
+A common trick in GATE problems is asking if overflow can occur when adding a positive and a negative number. **It is physically impossible.** Overflow ONLY occurs when adding two positive numbers (resulting in a negative sign bit) or adding two negative numbers (resulting in a positive sign bit). Do not waste time calculating carry bits if the operands have different signs.
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: The Sign-Bit Inspector**
+You do not need to calculate $C\_{in}$ and $C\_{out}$ to determine overflow if you can see the result.
+Just look at the sign bits!
+If $A\_{sign} = B\_{sign}$ and $Result\_{sign} \neq A\_{sign}$, then Overflow = 1.
+Example: Adding two positives (0 + 0) and getting a negative (1) implies the magnitude has bled into the sign bit. 
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter4Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+Consider a 6-bit 2's complement system. What is the decimal value of the result when $011011$ is added to $010110$? Does overflow occur? (Answer 1 if overflow, 0 if no overflow).
+
+**Question 2 (NAT):**
+In an 8-bit architecture, the binary strings $10000000$ and $11000000$ are added. What is the value of the overflow flag $V$?
+
+
+<ChapterNavigation currentChapter={4} />

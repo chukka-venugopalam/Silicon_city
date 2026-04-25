@@ -1,0 +1,50 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter30Simulator from "@/components/act-1/Chapter30Simulator";
+
+# Chapter 1.30: Posets and Hasse Diagrams
+
+<ChapterCard>
+### The Briefing: Visualizing Hierarchy
+A **Partially Ordered Set (POSET)** is a set equipped with a relation that is:
+1.  **Reflexive:** $a \le a$
+2.  **Antisymmetric:** If $a \le b$ and $b \le a$, then $a = b$.
+3.  **Transitive:** If $a \le b$ and $b \le c$, then $a \le c$.
+
+Standard examples include the "divides" relation ($a|b$) and the "subset" relation ($A \subseteq B$).
+Because the relation is transitive and reflexive, drawing the full graph is visually noisy. A **Hasse Diagram** perfectly minimizes a POSET by:
+*   Removing all reflexive self-loops.
+*   Removing all transitive edges (bypasses).
+*   Arranging elements vertically to imply direction, removing the need for arrowheads.
+</ChapterCard>
+
+<GateTrap>
+**Trap: Maximal vs Maximum**
+*   **Maximal Element:** An element that has *no element strictly greater than it*. (There can be multiple maximal elements in a Hasse diagram—they are the "peaks").
+*   **Maximum (Greatest) Element:** An element that is greater than *every other element* in the entire set. (There can be at most ONE maximum element).
+If a diagram has two distinct peaks, it has two maximal elements but NO maximum element.
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: Identifying a Lattice**
+A POSET is a **Lattice** if and only if EVERY pair of elements has a unique Least Upper Bound (LUB) and Greatest Lower Bound (GLB). 
+In an exam, quickly scan the Hasse Diagram for any "V" or upside-down "V" shapes where two elements converge to *multiple* distinct upper bounds or lower bounds. If you find a pair with two or more minimal upper bounds, it immediately fails the Lattice test.
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter30Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+Consider the POSET of divisors of 30: $D\_{30} = \{1, 2, 3, 5, 6, 10, 15, 30\}$ under the divisibility relation. How many edges does the minimal Hasse Diagram of this POSET contain?
+
+**Question 2 (NAT):**
+Let $S = \{a, b, c\}$. A POSET is defined by the subset relation $\subseteq$ on the Power Set of $S$. How many Maximal elements exist in this specific POSET?
+
+
+<ChapterNavigation currentChapter={30} />

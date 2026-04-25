@@ -1,0 +1,45 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter5Simulator from "@/components/act-1/Chapter5Simulator";
+
+# Chapter 1.5: Hardware Operations
+
+<ChapterCard>
+### The Briefing: Binary Arithmetic
+The Arithmetic Logic Unit (ALU) performs all calculations using binary addition as its core operation.
+* **Addition:** Follows the rules $0+0=0$, $0+1=1$, $1+0=1$, and $1+1=0$ (with carry 1).
+* **Subtraction:** $A - B$ is executed as $A + (\text{2's complement of } B)$.
+* **Multiplication:** Achieved through Shift and Add operations. Multiplying by $2^n$ is a Left Shift by $n$ bits.
+
+The Ripple Carry Adder (RCA) is the most basic implementation, where the carry out of the $i$-th full adder becomes the carry in for the $(i+1)$-th full adder.
+</ChapterCard>
+
+<GateTrap>
+**Trap: Propagation Delay Accumulation**
+In an $n$-bit Ripple Carry Adder, the Most Significant Bit cannot produce its final correct sum until the carry has rippled through all $n-1$ previous stages. The total delay is proportional to $O(n)$. Do not calculate the delay of an RCA as simply the delay of a single full adder. A single full adder has a delay of $2$ gate levels for the Carry, so an $n$-bit RCA takes $2n$ gate delays to stabilize.
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: Fast Binary Multiplication by Powers of 2**
+If asked to multiply a binary number by a decimal value like $10$, do not use long multiplication. Decompose it into powers of 2: $10 = 8 + 2$.
+So, $X \times 10 = X \times (2^3) + X \times (2^1)$.
+Shift $X$ left by 3 bits, shift $X$ left by 1 bit, and add the two results.
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter5Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+Consider a 4-bit Ripple Carry Adder constructed using Full Adders. If each Full Adder has a propagation delay of $10\text{ns}$ for the sum and $12\text{ns}$ for the carry, what is the maximum time taken to compute the final valid output (Sum and $C\_{out}$) for a 4-bit addition?
+
+**Question 2 (NAT):**
+Compute the binary result of $1101\_{2} \times 101\_{2}$. Convert the final result to decimal.
+
+
+<ChapterNavigation currentChapter={5} />

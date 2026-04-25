@@ -1,0 +1,48 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter15Simulator from "@/components/act-1/Chapter15Simulator";
+
+# Chapter 1.15: Inference Rules
+
+<ChapterCard>
+### The Briefing: The Architecture of Proof
+Inference rules are the atomic steps used to build a valid mathematical proof. An argument is valid if the conjunction of its premises implies its conclusion (i.e., $(P_1 \land P_2 \land ... \land P_n) \rightarrow C$ is a tautology).
+Key inference rules include:
+* **Modus Ponens:** $P \rightarrow Q$, $P$ $\vdash Q$
+* **Modus Tollens:** $P \rightarrow Q$, $\neg Q$ $\vdash \neg P$
+* **Hypothetical Syllogism:** $P \rightarrow Q$, $Q \rightarrow R$ $\vdash P \rightarrow R$
+* **Disjunctive Syllogism:** $P \lor Q$, $\neg P$ $\vdash Q$
+
+A proof is simply a sequence of these verified structural transformations.
+</ChapterCard>
+
+<GateTrap>
+**Trap: The Converse and Inverse Fallacies**
+GATE will intentionally construct arguments using standard human cognitive biases. 
+1. **Fallacy of Affirming the Consequent:** $P \rightarrow Q$, $Q$ $\vdash P$. (INVALID)
+2. **Fallacy of Denying the Antecedent:** $P \rightarrow Q$, $\neg P$ $\vdash \neg Q$. (INVALID)
+Just because it rains when it's cloudy ($P \rightarrow Q$), knowing it is raining ($Q$) does not prove it is cloudy ($P$). Do not let intuition override structural logic.
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: Transitivity Collapsing**
+In a question with multiple chained implications (e.g., $A \rightarrow B, B \rightarrow C, C \rightarrow D$), you can immediately collapse them into $A \rightarrow D$. If you are given $A$ as a premise, you can instantly conclude $D$. If you are given $\neg D$ as a premise, you can instantly conclude $\neg A$ via Modus Tollens. Ignore all intermediate variables.
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter15Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+Consider the premises: $X \rightarrow Y$, $Y \lor Z$, and $\neg Z$. What single atomic variable must be true for the argument to be valid? (Answer simply as the variable name).
+
+**Question 2 (NAT):**
+Is the inference rule "$P \rightarrow Q$, $\neg P \vdash \neg Q$" logically valid? (Answer 1 for Yes, 0 for No).
+
+
+<ChapterNavigation currentChapter={15} />

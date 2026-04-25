@@ -1,0 +1,43 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter10Simulator from "@/components/act-1/Chapter10Simulator";
+
+# Chapter 1.10: Complexity and Timing
+
+<ChapterCard>
+### The Briefing: Propagation Delay
+Logic gates do not compute instantaneously. The time taken for an input change to produce a stable output change is the **Propagation Delay ($t\_{pd}$)**.
+When gates are cascaded in a combinational circuit, the signal must ripple through multiple stages. The **Critical Path** is the longest delay path from any input to any output.
+The maximum operating frequency of a digital system is constrained by its critical path:
+$f\_{max} = \frac{1}{T\_{critical}}$
+
+If a clock pulse arrives before the critical path has stabilized, the system will sample incorrect, transient data (a timing violation).
+</ChapterCard>
+
+<GateTrap>
+**Trap: Ignoring Parallel Paths**
+When asked to find the total delay of a circuit, do not simply add up the delays of all gates in the diagram. Signals propagate through parallel paths simultaneously. You must evaluate the delay of EVERY possible path from input to output and select the **maximum** value. The fastest path does not matter; the system is only as fast as its slowest path.
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: The Multi-Level Bypass**
+In complex multi-level logic diagrams (like a Carry Lookahead Adder), look for signals that bypass early stages. If an input $C_0$ connects directly to the final layer of AND/OR gates, its delay path is only those final gates, while other inputs might travel through 4 or 5 levels. Always trace from the input that passes through the *most* gates.
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter10Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+A combinational circuit has three paths from input to output with delays of $12\text{ns}$, $18\text{ns}$, and $15\text{ns}$. What is the maximum theoretical operating frequency (in MHz) of a synchronous system bounded by this circuit?
+
+**Question 2 (NAT):**
+Consider a 2-level AND-OR implementation of an SOP expression. If the AND gates have a delay of $3\text{ns}$ and the OR gate has a delay of $4\text{ns}$, what is the critical path delay of the circuit in nanoseconds?
+
+
+<ChapterNavigation currentChapter={10} />

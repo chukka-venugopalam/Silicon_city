@@ -1,0 +1,46 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter16Simulator from "@/components/act-1/Chapter16Simulator";
+
+# Chapter 1.16: Quantifiers and Domains
+
+<ChapterCard>
+### The Briefing: The Predicate Layer
+Propositional logic cannot express properties of collections. First-Order Logic (FOL) introduces predicates $P(x)$ and quantifiers to map logic across a defined Domain of Discourse ($D$).
+* **Universal Quantifier ($\forall x$):** "For all $x$". The statement $\forall x P(x)$ is True if and only if $P(x)$ is True for every element in the domain. It is equivalent to a massive conjunction: $P(x_1) \land P(x_2) \land ... \land P(x_n)$.
+* **Existential Quantifier ($\exists x$):** "There exists an $x$". The statement $\exists x P(x)$ is True if $P(x)$ is True for at least one element in the domain. It is equivalent to a massive disjunction: $P(x_1) \lor P(x_2) \lor ... \lor P(x_n)$.
+</ChapterCard>
+
+<GateTrap>
+**Trap: The Empty Domain**
+In theoretical questions, GATE might test boundary conditions involving an empty domain $D = \emptyset$. 
+If the domain is empty, $\forall x P(x)$ is **True** (vacuous truth—there is no element that makes it false).
+Conversely, $\exists x P(x)$ is **False** (there is no element to make it true).
+Do not let your intuition override this strict mathematical definition.
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: Negation Distribution**
+When pushing a negation sign through a quantifier, simply flip the quantifier and negate the predicate.
+$\neg(\forall x P(x)) \equiv \exists x \neg P(x)$
+$\neg(\exists x P(x)) \equiv \forall x \neg P(x)$
+This is essentially De Morgan's Law scaled up to infinite sets. Applying this immediately simplifies complex "It is not the case that all..." sentences into actionable logic.
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter16Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+Let the domain $D$ be the set of integers $\{1, 2, 3\}$. Evaluate the truth value of the statement: $\exists x (x^2 < 0)$. (Answer 1 for True, 0 for False).
+
+**Question 2 (NAT):**
+If the statement $\forall x (P(x) \lor Q(x))$ is True, does it guarantee that $(\forall x P(x)) \lor (\forall x Q(x))$ is True? (Answer 1 for Yes, 0 for No).
+
+
+<ChapterNavigation currentChapter={16} />

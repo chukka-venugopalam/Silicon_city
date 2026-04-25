@@ -1,0 +1,51 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter25Simulator from "@/components/act-1/Chapter25Simulator";
+
+# Chapter 1.25: Flip-Flop Conversions
+
+<ChapterCard>
+### The Briefing: Universal State Emulation
+Any Flip-Flop can be converted into any other Flip-Flop by simply adding combinational logic to its input pins. 
+To convert an available Flip-Flop $A$ to function as a target Flip-Flop $B$:
+1.  **Define Target:** Write the truth table/excitation table for the desired Flip-Flop $B$.
+2.  **Map Requirements:** For every state transition $Q(t) \rightarrow Q(t+1)$, write down the inputs required by the *available* Flip-Flop $A$ to achieve that exact transition.
+3.  **Minimize:** Use Karnaugh Maps to solve for $A$'s input pins in terms of $B$'s input pins and the current state $Q(t)$.
+
+**The T (Toggle) Flip-Flop:** Created by tying J and K together ($J=K=T$) or by feeding $D = T \oplus Q(t)$. It flips its state every clock cycle if $T=1$.
+</ChapterCard>
+
+<GateTrap>
+**Trap: Confusing Characteristic vs Excitation**
+*   **Characteristic Equation:** Predicts the *next state* given the current inputs. (e.g., $Q(t+1) = D$).
+*   **Excitation Table:** Determines the *required inputs* given a desired state transition from $Q(t)$ to $Q(t+1)$. 
+If a GATE question asks "What inputs must be applied to reach state 1 from state 0?", you use the Excitation table, not the Characteristic equation.
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: The Don't Care Dominance**
+When designing counters or doing FF conversions with JK Flip-Flops, the Excitation Table for JK has $50\%$ Don't Care (X) conditions:
+$0 \rightarrow 0$ requires $J=0, K=X$
+$0 \rightarrow 1$ requires $J=1, K=X$
+$1 \rightarrow 0$ requires $J=X, K=1$
+$1 \rightarrow 1$ requires $J=X, K=0$
+Notice that $J$ dictates transitions from 0, and $K$ dictates transitions from 1. This massive amount of 'X's makes JK flip-flops the absolute cheapest in terms of external combinational logic gates for state machines.
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter25Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+To convert a D Flip-Flop into a T Flip-Flop, the external combinational logic requires one logic gate. If the inputs to this gate are $T$ and $Q(t)$, what type of gate is it? (Answer 1 for AND, 2 for OR, 3 for XOR, 4 for NAND).
+
+**Question 2 (NAT):**
+According to the JK Flip-Flop excitation table, if the current state is 1 and the next state must be 0, what is the required value for the $K$ input?
+
+
+<ChapterNavigation currentChapter={25} />

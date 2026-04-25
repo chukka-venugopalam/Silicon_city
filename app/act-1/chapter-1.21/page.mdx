@@ -1,0 +1,45 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter21Simulator from "@/components/act-1/Chapter21Simulator";
+
+# Chapter 1.21: Combinational Logic - Adders
+
+<ChapterCard>
+### The Briefing: Combinational Arithmetic
+Combinational logic circuits are time-independent. Their outputs are pure Boolean functions of their current inputs, with no memory of past states.
+
+The fundamental building blocks of ALUs are Adders:
+*   **Half Adder:** Adds two 1-bit numbers ($A, B$). Produces Sum ($S = A \oplus B$) and Carry ($C = AB$). It cannot accept a carry from a previous stage.
+*   **Full Adder:** Adds three 1-bit numbers ($A, B, C\_{in}$). Produces Sum ($S = A \oplus B \oplus C\_{in}$) and Carry Out ($C\_{out} = AB + C\_{in}(A \oplus B)$).
+
+A Full Adder can be constructed using two Half Adders and one OR gate.
+</ChapterCard>
+
+<GateTrap>
+**Trap: Delay Cascades**
+In a Ripple Carry Adder (RCA) constructed from $N$ Full Adders, the Sum for bit $N$ cannot be validated until the Carry from bit $N-1$ has propagated through. The critical path is entirely dictated by the Carry logic, not the Sum logic. If an exam asks for the total propagation delay of a 4-bit adder, you must calculate: $Delay = (N-1) \times t\_{carry} + \max(t\_{carry}, t\_{sum})$. Do not just multiply $N$ by the total gate delay of a single Full Adder.
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: The Subtract-by-Add Hack**
+To implement $A - B$ using an existing adder circuit, you do not need a dedicated subtractor. Use 2's Complement: $A - B = A + (-B) = A + (\text{NOT } B) + 1$.
+Hardware implementation: Invert all bits of $B$ using XOR gates (with a control signal of 1) and feed that same control signal `1` into the $C\_{in}$ of the first Full Adder. You now have an Adder/Subtractor with zero extra delay on the critical path.
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter21Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+How many 2-input NAND gates are required to construct a minimal Half Adder?
+
+**Question 2 (NAT):**
+In a 16-bit Ripple Carry Adder, each Full Adder has a Carry propagation delay of 12ns and a Sum delay of 15ns. What is the total worst-case time (in ns) taken to produce a valid 16-bit sum output?
+
+
+<ChapterNavigation currentChapter={21} />

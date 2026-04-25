@@ -1,0 +1,47 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter13Simulator from "@/components/act-1/Chapter13Simulator";
+
+# Chapter 1.13: Logical Equivalences
+
+<ChapterCard>
+### The Briefing: The Algebra of Propositions
+Two propositions $X$ and $Y$ are logically equivalent (written as $X \equiv Y$) if they have identical truth values for all possible assignments of their variables. This means the biconditional $X \leftrightarrow Y$ is a tautology.
+Instead of relying on truth tables, which grow exponentially ($2^n$ rows for $n$ variables), we use standard equivalence laws to simplify expressions analytically:
+* **Double Negation:** $\neg(\neg P) \equiv P$
+* **De Morgan's:** $\neg(P \land Q) \equiv \neg P \lor \neg Q$
+* **Distributive:** $P \lor (Q \land R) \equiv (P \lor Q) \land (P \lor R)$
+* **Absorption:** $P \lor (P \land Q) \equiv P$
+</ChapterCard>
+
+<GateTrap>
+**Trap: Overlooking the OR-Distribution**
+Students are comfortable distributing AND over OR because it mimics standard multiplication over addition: $A(B+C) = AB + AC$. 
+However, Propositional Logic also allows distributing OR over AND: $A + (BC) = (A+B)(A+C)$. Forgetting this law often traps students in dead-end simplifications during exams.
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: The Implication Chain**
+When faced with chained implications like $P \rightarrow (Q \rightarrow R)$, never try to evaluate them in your head. Immediately convert them to ORs.
+$P \rightarrow (\neg Q \lor R)$
+$\neg P \lor (\neg Q \lor R)$
+Since all operators are now ORs, the parentheses can be dropped (Associative Law). The expression is simply $\neg P \lor \neg Q \lor R$.
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter13Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+Evaluate the Boolean simplification of $P \lor (\neg P \land Q)$. If the simplified expression is of the form $P \lor X$, what is $X$? (Answer simply as the variable name).
+
+**Question 2 (NAT):**
+Is the equivalence $(P \rightarrow Q) \land (P \rightarrow \neg Q) \equiv \neg P$ mathematically valid? (Answer 1 for Yes, 0 for No).
+
+
+<ChapterNavigation currentChapter={13} />

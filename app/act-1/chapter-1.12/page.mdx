@@ -1,0 +1,50 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter12Simulator from "@/components/act-1/Chapter12Simulator";
+
+# Chapter 1.12: Tautologies and Satisfiability
+
+<ChapterCard>
+### The Briefing: Universal Truths
+A proposition's logical classification depends entirely on its truth table outcomes:
+* **Tautology (Valid):** A compound proposition that is always True (1), regardless of the truth values of its atomic components. Example: $P \lor \neg P$.
+* **Contradiction (Unsatisfiable):** A compound proposition that is always False (0). Example: $P \land \neg P$.
+* **Contingency (Satisfiable but not Valid):** A proposition that can be either True or False depending on its inputs. Example: $P \rightarrow Q$.
+
+If a proposition $X$ is a tautology, its negation $\neg X$ is guaranteed to be a contradiction.
+</ChapterCard>
+
+<GateTrap>
+**Trap: Satisfiable vs Valid**
+Do not confuse "Satisfiable" with "Valid." 
+A formula is **Satisfiable** if there is *at least one* row in its truth table that results in True. 
+A formula is **Valid** (a Tautology) ONLY if *every* row results in True.
+Therefore, all Valid formulas are Satisfiable, but not all Satisfiable formulas are Valid. A Contingency is Satisfiable.
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: Falsification Strategy**
+To quickly test if a complex formula like $(P \rightarrow Q) \lor (Q \rightarrow P)$ is a tautology without drawing a 4-row truth table, try to **break it** (make it false).
+Since it's an OR ($\lor$) statement, it can only be false if BOTH sides are false.
+Left side $(P \rightarrow Q)$ is false when $P=1, Q=0$.
+Right side $(Q \rightarrow P)$ is false when $Q=1, P=0$.
+These conditions contradict each other! It is impossible for $P$ to be 1 and 0 simultaneously. Therefore, you cannot make it false. It is a Tautology.
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter12Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+Is the logical proposition $((A \rightarrow B) \land A) \rightarrow B$ a Tautology, Contradiction, or Contingency? (Answer 1 for Tautology, 0 for Contradiction, 2 for Contingency).
+
+**Question 2 (NAT):**
+Consider the formula $(P \lor Q) \land (\neg P \land \neg Q)$. Is this formula Satisfiable? (Answer 1 for Yes, 0 for No).
+
+
+<ChapterNavigation currentChapter={12} />

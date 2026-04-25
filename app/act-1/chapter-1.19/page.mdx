@@ -1,0 +1,46 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter19Simulator from "@/components/act-1/Chapter19Simulator";
+
+# Chapter 1.19: Karnaugh Maps (2 & 3 Variables)
+
+<ChapterCard>
+### The Briefing: Visual Minimization
+A Karnaugh Map (K-Map) is a graphical tool used to minimize Boolean expressions without algebra. It leverages the human brain's pattern-recognition capabilities by arranging truth table outputs in a specific grid format known as **Gray Code** ($00, 01, 11, 10$).
+
+Because only one bit changes between any two adjacent cells, grouping adjacent 1s allows us to eliminate variables that change state.
+*   Grouping $2$ adjacent 1s eliminates $1$ variable.
+*   Grouping $4$ adjacent 1s eliminates $2$ variables.
+*   Grouping $8$ adjacent 1s eliminates $3$ variables (resulting in just the constant 1).
+</ChapterCard>
+
+<GateTrap>
+**Trap: Forgetting the Map Edges**
+A K-Map is not a flat square; it is a toroid (a donut). The left edge is adjacent to the right edge, and the top edge is adjacent to the bottom edge. A very common exam trap is a function with 1s at $m_0$ and $m_2$. Visually, they are on opposite ends of the top row, but they ARE adjacent. They form a valid group of 2, eliminating the variable $C$.
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: Essential Prime Implicant Scan**
+Do not randomly circle groups of 1s. This leads to redundant terms.
+1. Find all 1s that can ONLY be grouped in exactly one way. These groups are **Essential Prime Implicants (EPIs)**. Circle them first.
+2. Only after all EPIs are drawn should you circle remaining 1s, using the largest possible groups.
+If a 1 is already covered by an EPI, you can still reuse it to help cover other isolated 1s.
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter19Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+Consider a 3-variable K-map for $f(A,B,C) = \Sigma m(0, 2, 4, 6)$. How many variables are eliminated when forming the largest possible Prime Implicant group for this function?
+
+**Question 2 (NAT):**
+A 3-variable Boolean function has 1s at minterms 1, 3, 5, and 7. What is the minimal SOP expression? (Write the answer in the form of a single variable, e.g., $A$, $B$, or $C$).
+
+
+<ChapterNavigation currentChapter={19} />

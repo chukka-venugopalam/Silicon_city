@@ -1,0 +1,42 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter20Simulator from "@/components/act-1/Chapter20Simulator";
+
+# Chapter 1.20: 4-Variable K-Maps and Don't Cares
+
+<ChapterCard>
+### The Briefing: The Complexity Threshold
+A 4-variable Boolean function has 16 possible minterms. The K-Map expands to a 4x4 grid. The Gray Code sequence ($00, 01, 11, 10$) applies to both rows and columns. This means the map wraps around completely—the top row is adjacent to the bottom row, and the left column is adjacent to the right column. The four corners of the map actually form a single adjacent group of 4!
+
+**Don't Care Conditions ($X$ or $d$):** In physical digital systems, certain input combinations may be physically impossible (e.g., a BCD digit greater than 9). The output for these states does not matter. We represent them as 'X' on the K-Map. We exploit them to optimize logic.
+</ChapterCard>
+
+<GateTrap>
+**Trap: Over-Grouping Don't Cares**
+The biggest mistake students make with Don't Cares is feeling obligated to include all of them in groupings. **You do not need to cover every X.** An 'X' is only a wild card. If treating it as a '1' helps you form a larger group (like upgrading a group of 2 into a group of 4) that covers at least one *actual* '1', then do it. If treating an 'X' as a '1' only creates a new group of just 'X's, leave it as a '0'.
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: The Quad-Corner Check**
+When solving a 4-variable K-Map, before looking for blocks of 4 in the center, always check the four corners first: $m_0, m_2, m_8, m\_{10}$.
+If all four corners are 1s (or Xs helping to cover a 1), they immediately form a group of 4 that minimizes to $B'D'$. 
+This is the most frequently missed optimization in high-pressure exam environments.
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter20Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+A 4-variable function is defined as $f(A,B,C,D) = \Sigma m(0, 1, 2, 8, 9, 10) + \Sigma d(3, 11)$. What is the number of variables in the minimal SOP expression? (Do not count repeated variables in different terms, just the variables in the single resulting term if it minimizes to one, or answer how many literal occurrences total). *Wait, assume it asks for the number of literals in the minimal SOP.*
+
+**Question 2 (NAT):**
+In a 4-variable K-map, if all 16 cells are marked as Don't Care (X), what is the minimal hardware cost to implement this function? (Answer in terms of number of logic gates required).
+
+
+<ChapterNavigation currentChapter={20} />

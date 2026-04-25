@@ -1,0 +1,49 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
+import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Chapter17Simulator from "@/components/act-1/Chapter17Simulator";
+
+# Chapter 1.17: Formal Validity and Scope
+
+<ChapterCard>
+### The Briefing: Variable Binding
+In First-Order Logic, a variable is either **bound** or **free**. 
+*   **Bound Variable:** A variable that falls within the scope of a quantifier ($\forall$ or $\exists$). 
+*   **Free Variable:** A variable not bound by any quantifier. An expression containing free variables is not a proposition; it is a propositional function and cannot be evaluated as True or False without assigning a specific value to the free variable.
+
+**Variable Shadowing:** If nested quantifiers use the same variable name (e.g., $\forall x (\exists x P(x))$), the inner quantifier overrides the outer one for its specific sub-formula. The outer $\forall x$ has no effect on the inner $x$.
+</ChapterCard>
+
+<GateTrap>
+**Trap: Commutativity of Quantifiers**
+Adjacent quantifiers of the *same* type can be swapped without changing the meaning:
+$\forall x \forall y P(x,y) \equiv \forall y \forall x P(x,y)$.
+However, swapping *different* quantifiers drastically changes the logic:
+$\forall x \exists y P(x,y)$ means "For every person $x$, there is someone $y$ they love."
+$\exists y \forall x P(x,y)$ means "There is one specific person $y$ that everyone loves."
+These are NOT equivalent. The second implies the first, but the first does not imply the second.
+</GateTrap>
+
+<ArchitectShortcut>
+**Shortcut: Safe Renaming (Alpha Equivalence)**
+If an exam question presents a confusing nested formula with shadowed variables like $\forall x(P(x) \land \exists x Q(x))$, immediately rename the inner bound variable to avoid mental tracking errors.
+Rewrite it as: $\forall x(P(x) \land \exists y Q(y))$. 
+Because bound variables are just placeholders (dummy variables), changing their names (safely, without capturing free variables) is perfectly valid and clarifies the scope instantly.
+</ArchitectShortcut>
+
+<SimulatorContainer>
+  <Chapter17Simulator />
+</SimulatorContainer>
+
+### The Proving Ground
+
+**Question 1 (NAT):**
+Consider the FOL formula: $\forall x (P(x, y) \rightarrow \exists z Q(x, z, w))$. How many variables in this formula are strictly Free Variables?
+
+**Question 2 (NAT):**
+Is the logical statement $\exists x \forall y P(x, y) \rightarrow \forall y \exists x P(x, y)$ a valid implication in First-Order Logic? (Answer 1 for Yes, 0 for No).
+
+
+<ChapterNavigation currentChapter={17} />
