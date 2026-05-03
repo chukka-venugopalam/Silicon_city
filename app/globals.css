@@ -6,3 +6,23 @@ body {
   background-color: #f8fafc;
   color: #334155;
 }
+
+pre,
+code {
+  @apply bg-slate-50 text-slate-800 font-mono text-sm;
+}
+
+pre {
+  @apply border-l-4 border-cyan-400 p-4 rounded-r-md shadow-sm overflow-x-auto;
+}
+
+.animate-shake {
+  animation: shake 0.36s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-4px); }
+}

@@ -1,14 +1,40 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
 import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import VirtualMemory from "@/components/act-2/VirtualMemory";
 
 <div className="max-w-4xl mx-auto space-y-8 pb-24">
   <div className="space-y-2">
     <div className="text-slate-500 font-bold text-sm tracking-widest uppercase">Act 2 — The First Pulse</div>
-    <h1 className="text-4xl font-black text-slate-900 tracking-tight">Mission 14: System Diagnostics</h1>
+    <h1 className="text-4xl font-black text-slate-900 tracking-tight">Mission 14: Virtual Memory Tiles</h1>
   </div>
 
-  <ChapterCard title="Sector Offline" badge="Status: Pending" badgeColor="bg-slate-100 text-slate-500">
-    The Architect has not yet written the logic for this sector. 
-    Awaiting input to restore this portion of Silicon City.
+  <ChapterCard title="System Briefing" badge="Status: Active" badgeColor="bg-cyan-100 text-cyan-800">
+    The Pulse Core is seeking stability in the virtual memory tiles sector. Use the diagnostic terminal to verify the control path and restore the node.
   </ChapterCard>
-</div>
 
+  <GateTrap>
+    <strong>Diagnostic Trap:</strong> The TLB maps virtual page numbers to frames in physical memory.
+  </GateTrap>
+
+  <ArchitectShortcut>
+    <strong>Architect Shortcut:</strong> Remember that page tables translate virtual addresses before physical access.
+  </ArchitectShortcut>
+
+  <SimulatorContainer>
+    <VirtualMemory />
+  </SimulatorContainer>
+
+  <div className="space-y-4">
+    <h2 className="text-2xl font-semibold text-slate-900">The Proving Ground</h2>
+    <p className="text-sm text-slate-600">Answer the following to demonstrate your understanding of virtual memory tiles.</p>
+    <ul className="list-disc space-y-2 pl-5 text-slate-700">
+      <li><strong>Question 1 (NAT):</strong> Which address is translated by the TLB: virtual or physical?</li>
+      <li><strong>Question 2 (NAT):</strong> What is stored in a page table entry?</li>
+    </ul>
+  </div>
+
+  <ChapterNavigation currentChapter={14} />
+</div>

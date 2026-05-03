@@ -1,14 +1,40 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
 import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import Scheduling from "@/components/act-2/Scheduling";
 
 <div className="max-w-4xl mx-auto space-y-8 pb-24">
   <div className="space-y-2">
     <div className="text-slate-500 font-bold text-sm tracking-widest uppercase">Act 2 — The First Pulse</div>
-    <h1 className="text-4xl font-black text-slate-900 tracking-tight">Mission 21: System Diagnostics</h1>
+    <h1 className="text-4xl font-black text-slate-900 tracking-tight">Mission 21: Scheduling Policies</h1>
   </div>
 
-  <ChapterCard title="Sector Offline" badge="Status: Pending" badgeColor="bg-slate-100 text-slate-500">
-    The Architect has not yet written the logic for this sector. 
-    Awaiting input to restore this portion of Silicon City.
+  <ChapterCard title="System Briefing" badge="Status: Active" badgeColor="bg-cyan-100 text-cyan-800">
+    The Pulse Core is seeking stability in the scheduling policies sector. Use the diagnostic terminal to verify the control path and restore the node.
   </ChapterCard>
-</div>
 
+  <GateTrap>
+    <strong>Diagnostic Trap:</strong> Round-robin cycles through processes with equal time slices.
+  </GateTrap>
+
+  <ArchitectShortcut>
+    <strong>Architect Shortcut:</strong> Use a circular queue to rotate CPU time fairly among ready tasks.
+  </ArchitectShortcut>
+
+  <SimulatorContainer>
+    <Scheduling />
+  </SimulatorContainer>
+
+  <div className="space-y-4">
+    <h2 className="text-2xl font-semibold text-slate-900">The Proving Ground</h2>
+    <p className="text-sm text-slate-600">Answer the following to demonstrate your understanding of scheduling policies.</p>
+    <ul className="list-disc space-y-2 pl-5 text-slate-700">
+      <li><strong>Question 1 (NAT):</strong> Round-robin follows which order?</li>
+      <li><strong>Question 2 (NAT):</strong> What is the key feature of time-slice scheduling?</li>
+    </ul>
+  </div>
+
+  <ChapterNavigation currentChapter={21} />
+</div>

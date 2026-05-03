@@ -1,14 +1,40 @@
+import ChapterNavigation from '../../../components/ui/ChapterNavigation';
 import { ChapterCard } from "@/components/ui/ChapterCard";
+import { GateTrap } from "@/components/ui/GateTrap";
+import { ArchitectShortcut } from "@/components/ui/ArchitectShortcut";
+import { SimulatorContainer } from "@/components/ui/SimulatorContainer";
+import ProcessStates from "@/components/act-2/ProcessStates";
 
 <div className="max-w-4xl mx-auto space-y-8 pb-24">
   <div className="space-y-2">
     <div className="text-slate-500 font-bold text-sm tracking-widest uppercase">Act 2 — The First Pulse</div>
-    <h1 className="text-4xl font-black text-slate-900 tracking-tight">Mission 20: System Diagnostics</h1>
+    <h1 className="text-4xl font-black text-slate-900 tracking-tight">Mission 20: Process States</h1>
   </div>
 
-  <ChapterCard title="Sector Offline" badge="Status: Pending" badgeColor="bg-slate-100 text-slate-500">
-    The Architect has not yet written the logic for this sector. 
-    Awaiting input to restore this portion of Silicon City.
+  <ChapterCard title="System Briefing" badge="Status: Active" badgeColor="bg-cyan-100 text-cyan-800">
+    The Pulse Core is seeking stability in the process states sector. Use the diagnostic terminal to verify the control path and restore the node.
   </ChapterCard>
-</div>
 
+  <GateTrap>
+    <strong>Diagnostic Trap:</strong> A process waiting for I/O is not ready to run and enters the blocked state.
+  </GateTrap>
+
+  <ArchitectShortcut>
+    <strong>Architect Shortcut:</strong> Differentiate ready, running, and blocked when scheduling processes.
+  </ArchitectShortcut>
+
+  <SimulatorContainer>
+    <ProcessStates />
+  </SimulatorContainer>
+
+  <div className="space-y-4">
+    <h2 className="text-2xl font-semibold text-slate-900">The Proving Ground</h2>
+    <p className="text-sm text-slate-600">Answer the following to demonstrate your understanding of process states.</p>
+    <ul className="list-disc space-y-2 pl-5 text-slate-700">
+      <li><strong>Question 1 (NAT):</strong> What state is a process in while waiting for I/O?</li>
+      <li><strong>Question 2 (NAT):</strong> Which state means the process can run but is not currently running?</li>
+    </ul>
+  </div>
+
+  <ChapterNavigation currentChapter={20} />
+</div>

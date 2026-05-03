@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Scratchpad from "@/components/ui/Scratchpad";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -36,6 +37,8 @@ export default function RootLayout({
         <main className="container mx-auto px-6 py-12">
           {children}
         </main>
+
+        <Scratchpad />
       </body>
     </html>
   );
