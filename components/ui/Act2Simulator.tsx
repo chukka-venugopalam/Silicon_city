@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import GateValidator from "./GateValidator";
 
-type NodeStatus = "idle" | "active" | "alert";
+export type NodeStatus = "idle" | "active" | "alert";
 
-type SimulatorAction = {
+export type SimulatorAction = {
   label: string;
   badge: string;
   correct: boolean;
@@ -13,7 +13,7 @@ type SimulatorAction = {
   highlightIndex: number;
 };
 
-type SimulatorNode = {
+export type SimulatorNode = {
   label: string;
   value: string;
   description: string;
