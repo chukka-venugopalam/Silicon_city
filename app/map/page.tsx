@@ -13,7 +13,7 @@ interface ActCard {
 
 const acts: ActCard[] = [
   { num: 1, title: "The Logical Singularity", href: "/act-1/chapter-1.1", locked: false, chapterCount: 31 },
-  { num: 2, title: "The First Pulse", href: "/act-2/chapter-1", locked: false, chapterCount: 25 },
+  { num: 2, title: "The First Pulse", href: "/act-2/chapter-2.1", locked: false, chapterCount: 31 },
   { num: 3, title: "The Architect's Hand", href: "#", locked: true, chapterCount: 31 },
   { num: 4, title: "The Abstract Machine", href: "#", locked: true, chapterCount: 31 },
   { num: 5, title: "The Tower", href: "#", locked: true, chapterCount: 31 },
@@ -42,7 +42,7 @@ export default function CityMap() {
       });
     }
 
-    setProgress(completed);
+    setTimeout(() => setProgress(completed), 0);
   }, []);
 
   return (

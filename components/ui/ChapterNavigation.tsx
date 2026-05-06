@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 interface ChapterNavigationProps {
   currentChapter: number;
@@ -9,22 +9,22 @@ interface ChapterNavigationProps {
 }
 
 export default function ChapterNavigation({ currentChapter, actNumber = 1 }: ChapterNavigationProps) {
-  const [saved, setSaved] = useState(false);
-  const chapterCount = actNumber === 2 ? 25 : 31;
+  const saved = true;
+  const chapterCount = 31;
   const chapterKey = `completed-act-${actNumber}-chapter-${currentChapter}`;
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     window.localStorage.setItem(chapterKey, "true");
-    setSaved(true);
   }, [chapterKey]);
 
   const previousChapter = currentChapter - 1;
   const nextChapter = currentChapter + 1;
   const hasPrevious = currentChapter > 1;
   const hasNext = currentChapter < chapterCount;
-  const previousHref = actNumber === 1 ? `/act-1/chapter-1.${previousChapter}` : `/act-${actNumber}/chapter-${previousChapter}`;
-  const nextHref = actNumber === 1 ? `/act-1/chapter-1.${nextChapter}` : `/act-${actNumber}/chapter-${nextChapter}`;
+  const chapterPrefix = `/act-${actNumber}/chapter-${actNumber}.`;
+  const previousHref = `${chapterPrefix}${previousChapter}`;
+  const nextHref = `${chapterPrefix}${nextChapter}`;
 
   return (
     <div className="mt-16 pt-8 border-t border-slate-200 bg-white">
