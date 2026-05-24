@@ -39,7 +39,7 @@ Traditional preparation:
 
 ```text
 Study subject → memorize theory → solve PYQs
-
+```
 Silicon City:
 
 Experience systems visually
